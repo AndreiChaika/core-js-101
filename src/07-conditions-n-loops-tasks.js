@@ -278,15 +278,25 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
+
 function isCreditCardNumber(ccn) {
-  let accept = 0;
-  const str = ccn.toString().split('').reverse().join('');
-  for (let i = 0; i < str.length; i += 1) {
-    if (i % 2 === 1) {
-      accept = accept + (str[i] * 2 > 9) ? Number(str[i] * 2 - 9) : Number(str[i] * 2);
-    } else accept += Number(str[i]);
+  let cardNumber = ccn.toString().split('').reverse();
+  cardNumber.unshift('0');
+  cardNumber = cardNumber.map((element) => Number(element));
+  cardNumber = cardNumber.map((element, i) => {
+    if (i % 2 === 0) {
+      const num = element * 2;
+      if (String(num).length === 2) {
+        return String(num).split('').reduce((acc, val) => acc + (val * 1), 0);
+      } return num;
+    }
+    return element;
+  });
+  const cardResult = cardNumber.reduce((acc, element) => acc + element);
+  if (cardResult % 10 === 0) {
+    return true;
   }
-  return accept % 10 === 0;
+  return false;
 }
 
 /**
