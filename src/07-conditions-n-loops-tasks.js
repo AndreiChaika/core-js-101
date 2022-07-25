@@ -48,7 +48,7 @@ function getFizzBuzz(num) {
 function getFactorial(n) {
   let res = 1;
   for (let i = 2; i <= n; i += 1) {
-    res = res * i;
+    res *= i;
   }
   return res;
 }
@@ -69,7 +69,7 @@ function getFactorial(n) {
 function getSumBetweenNumbers(n1, n2) {
   let res = 0;
   for (let i = n1; i <= n2; i += 1) {
-    res = res + i;
+    res += i;
   }
   return res;
 }
@@ -129,7 +129,10 @@ function isTriangle(a, b, c) {
  *
  */
 function doRectanglesOverlap(rect1, rect2) {
-  if ((rect1.left < (rect2.left + rect2.width)) && (rect2.left < (rect1.left + rect1.width)) && (rect1.top < (rect2.top + rect2.height)) && (rect2.top < (rect1.top + rect1.height))) {
+  if ((rect1.left < (rect2.left + rect2.width))
+  && (rect2.left < (rect1.left + rect1.width))
+  && (rect1.top < (rect2.top + rect2.height))
+  && (rect2.top < (rect1.top + rect1.height))) {
     return true;
   }
   return false;
@@ -181,7 +184,7 @@ function isInsideCircle(circle, point) {
  */
 function findFirstSingleChar(str) {
   for (let i = 0; i < str.length; i += 1) {
-    let chamber = str[i];
+    const chamber = str[i];
     if (str.indexOf(chamber) === i && str.indexOf(chamber, i + 1) === -1) {
       return chamber;
     }
@@ -281,7 +284,7 @@ function isCreditCardNumber(ccn) {
   for (let i = 0; i < str.length; i += 1) {
     if (i % 2 === 1) {
       accept = accept + (str[i] * 2 > 9) ? Number(str[i] * 2 - 9) : Number(str[i] * 2);
-    } else accept = accept + Number(str[i]);
+    } else accept += Number(str[i]);
   }
   return accept % 10 === 0;
 }
