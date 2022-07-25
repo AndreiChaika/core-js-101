@@ -52,7 +52,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return 'Hello, ' + firstName + lastName + '!';
+  return `Hello, ${firstName}${lastName}!`;
 }
 
 /**
@@ -66,7 +66,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  let str = 'Hello, *!';
+  const str = 'Hello, *!';
   return value.match(new RegExp(str.replace('*', '(.*)')))[1];
 }
 
@@ -113,8 +113,8 @@ function removeLeadingAndTrailingWhitespaces(value) {
  */
 function repeatString(value, count) {
   let str = '';
-  for (let i = 0; i < count; i++) {
-    str = str + value;
+  for (let i = 0; i < count; i += 1) {
+    str += value;
   }
   return str;
 }
@@ -147,7 +147,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    return str.substring(1, str.length - 1);
+  return str.substring(1, str.length - 1);
 }
 
 
@@ -162,7 +162,7 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-    return str.toUpperCase();
+  return str.toUpperCase();
 }
 
 /**
@@ -213,43 +213,43 @@ function getRectangleString(width, height) {
     let str = '';
     switch (firstOrMiddleOrLast) {
       case 'first':
-        str = str + '┌';
+        str += '┌';
         break;
       case 'last':
-        str = str + '└';
+        str += '└';
         break;
       default:
-        str = str + '│';
+        str += '│';
     }
     if (lineWidth > 2) {
       for (let i = 0; i < lineWidth - 2; i += 1) {
         if (firstOrMiddleOrLast === 'middle') {
-          str = str + ' ';
+          str += ' ';
         } else {
-          str = str + '─';
+          str += '─';
         }
       }
     }
     switch (firstOrMiddleOrLast) {
       case 'first':
-        str = str + '┐';
+        str += '┐';
         break;
       case 'last':
-        str = str + '┘';
+        str += '┘';
         break;
       default:
-        str = str + '│';
+        str += '│';
     }
-    str = str + '\n';
+    str += '\n';
     return str;
   }
-  res = res + createLine('first', width);
+  res += createLine('first', width);
   if (height > 2) {
     for (let i = 0; i < height - 2; i += 1) {
-      res = res + createLine('middle', width);
+      res += createLine('middle', width);
     }
   }
-  res = res + createLine('last', width);
+  res += createLine('last', width);
   return res;
 }
 
